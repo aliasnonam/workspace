@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!------------------------------------------- EVENTS ------------------------------------------->
+        <script type="text/javascript">
+            document.querySelector("#id").addEventListener("click", fonction);
+            document.querySelector("#id").addEventListener("keyup", fonction);
+            document.querySelector("#id").addEventListener("load", fonction);
+            document.querySelector("#id").addEventListener("focus", fonction);
+            document.querySelector("#id").textContent += "add"; // =""; ="x";
+            document.querySelector("#id").innerHTML;
+            document.querySelector("#id").placeholder="";
+            document.querySelector("#id").setAttribute("name","php");
+            document.querySelector("#id").getAttribute("href");
+            document.querySelector("#id").length;
+            document.querySelector("#id").style.color="red";
+            document.querySelectorAll("a[href^='https://']")[1].href='';
+            document.write(screen.width+"*"+screen.height);
+
+            var red = document.querySelectorAll("#contenu p");
+            for (i=0; i<red.length ; i++){
+                red[i].style.color="red"; //style.margin | .fontfamily | .backgroundcolor ...
+            }
+        </script>
+
+        <button onclick="redparagraphe()">Click me</button>
+        <button onclick="windowgoogle()">Click me</button>
+        <p id="jsparagraphe">paragraphe</p>
+        <script type="text/javascript">
+            // Changement couleur paragraphe
+            var red = false;
+            function redparagraphe(){
+                if(red == false){
+                    document.getElementById("jsparagraphe").style.color = "red";
+                    red = true;
+                }
+                else{
+                    document.getElementById("jsparagraphe").style.color = "black";
+                    red = false;
+                }
+            }
+            // Changement fenetre
+            function windowgoogle(){
+                window.location = "http://www.google.fr";
+            }
+        </script>
+
+        <button id="button">Cliquez-moi !</button>
+        <script type="text/javascript">
+            // Changement texte bouton
+            var tgbtn = document.querySelector("#button");
+            var clic = false;
+            function boutonclick() {
+                if(clic == false){
+                    tgbtn.textContent = "Recliquez!";
+                    clic = true;
+                }
+                else{
+                    tgbtn.textContent = "Cliquez!";
+                    clic = false;
+                }    
+            };
+            tgbtn.addEventListener("click", boutonclick); 
+        </script>
+
+        <script type="text/javascript">
+            // Afficher position souris + alert easter egg
+            function infosSouris(e) {
+                console.log("Evènement souris : " + e.type + ", X : " + e.clientX + ", Y : " + e.clientY);
+                if (e.clientX > 300 && e.clientX < 350){
+                    alert("Easter egg");
+                }
+            }
+            document.addEventListener("click", infosSouris);
+            // Afficher touche clavier
+            function infosClavier(e) {
+                console.log("Evènement clavier : " + e.type + ", touche : " 
+                + String.fromCharCode(e.keyCode) +"="+ e.keyCode);
+            }
+            document.addEventListener("keyup", infosClavier);
+        </script>
+
+        <!------------------------------------------- P.O.O ------------------------------------------->
+        <script type="text/javascript">
+        // Objet
+            let stylo ={
+                type: "stylo",
+                brand: "Bic FFF",
+                color: "France"
+            };
+            let ink4 = stylo.type; console.log(ink4);  
+        </script>
+
+        <script type="text/javascript">
+        // Classe + instances
+            class BankAccount{
+                constructor(owner, balance){
+                    this.owner = owner;
+                    this.balance = balance;  
+                }
+                showBalance(){
+                    console.log("Solde de: "+this.owner+" "+this.balance+" Eur");
+                }
+                minusBalance(retrait){   
+                    this.balance = this.balance - retrait;
+                    console.log("New Solde: " + this.balance + " Eur");
+                }
+                plusBalance(ajout){
+                    if (ajout>0){
+                        this.balance = this.balance + ajout;
+                        console.log("New Solde: " + this.balance + " Eur");
+                    }
+                }
+                decouvertBalance(retrait){
+                    retrait = Number(prompt("Saisir votre montant")); 
+                    if (this.balance - retrait >= 0){
+                        this.balance = this.balance - retrait;
+                        console.log("New Solde: " + this.balance + " Eur");
+                    }
+                    else{
+                        console.log("Decouvert, retrait refuse");
+                    }   
+                }
+            }
+            var WillAccount = new BankAccount("Will Alexander", 500);
+            WillAccount.showBalance();
+            WillAccount.plusBalance(200);
+            WillAccount.minusBalance(400);
+            WillAccount.decouvertBalance();
+            WillAccount.showBalance();
+        </script>
+
+        <script type="text/javascript">
+        // Classe + instances + fonction
+            class Rectangle{
+                constructor(h, l){
+                    this.h = h;
+                    this.l = l;
+                }
+                calculAire(){
+                    var aire = this.h * this.l;
+                    return aire;    
+                }    
+            }
+            function soustractionAire(h1, l1, h2, l2){
+                h1 = prompt("h1"); l1 = prompt("l1"); h2 = prompt("h2"); l2 = prompt("l2"); 
+                var airedif = (new Rectangle(h1, l1)).calculAire() - (new Rectangle(h2, l2)).calculAire();
+                console.log(airedif);
+            }
+            soustractionAire();
+        </script>
+
+        <!------------------------------------------- ALGO ------------------------------------------->
+        <script type="text/javascript">
+        // Version 1.0.0 do if, else if, else while
+            // Ini var
+            do{
+                var question = prompt("Fill tank, is the tank full (Y/N)");   
+                if (question=="Y"){
+                var tank = true;
+                }
+                else if (question=="N"){
+                var tank = false;
+                }
+                else{
+                while(question!="Y" && question!="N"){
+                    var tank = false;
+                    question = prompt("Is the tank full, please enter Y or N");
+                    if (question == "Y"){
+                        var tank = true;
+                    }
+                }
+                }   
+            } while (!tank){   
+            }     
+        </script>
+
+        <!------------------------------------------- BONUS ALGO ------------------------------------------->
+        <script type="text/javascript">
+            class Person {
+            constructor(name, sex, age) {
+                this.age = Number(age); this.sex = sex; this.name = name;
+            }}
+            let Elfen1 = new Person("Lucy1", "F", "10");
+            let Elfen2 = new Person("Lucy2", "F", "5");
+            let Elfen3 = new Person("Lucy3", "F", "8");
+            
+            function sort(tab){
+            var tri;
+                do{ 
+                    tri = false;
+                    for(var i=0; i < tab.length-1; i++){
+                        if(tab[i] > tab[i+1]){
+                            // temporary var
+                            var tmp = tab[i];
+                            tab[i] = tab[i+1];
+                            tab[i+1] = tmp;
+                            tri = true;              
+                        }
+                    }
+                }while(tri);
+            }
+            var Diclonius = [Elfen1.age, Elfen2.age, Elfen3.age];
+            sort(Diclonius);
+            console.log(Diclonius);
+        </script>
+    </body>
+</html>
+        
